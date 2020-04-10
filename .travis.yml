@@ -18,4 +18,4 @@ deploy:
 after_deploy: 
   - "echo 'Deployment finished.'"
     # Call Checkly trigger
-  - bash checkkly.sh
+  - bash checkly.sh
