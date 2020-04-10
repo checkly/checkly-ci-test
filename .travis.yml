@@ -5,7 +5,8 @@ cache:
   directories:
     - node_modules    
 script:
-  - npm run test:unit  
+  - npm run test:unit
+  - npm run build  
 before_deploy: "echo 'Deploying.'"
 deploy:
   provider: s3
