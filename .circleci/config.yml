@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:13.13
     steps:
       - checkout
-       - run:
+      - run:
           name: Setup
           command: |
             echo "Setup starting..."
