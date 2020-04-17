@@ -5,12 +5,21 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Building..."'
+                sh 'npm run build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'echo "Running tests..."'
+                sh 'npm run test:unit'
             }
         }
 
         stage('Deploy') {
             steps {
                 sh 'echo "Deploying..."'
+                // Insert your own deployment procedure
             }
         }
 
