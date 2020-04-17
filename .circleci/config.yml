@@ -1,0 +1,30 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: alpine:3.7
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: |
+            echo "Building..."
+            npm run build
+      - run:
+          name: Test
+          command: |
+            echo "Running tests..."
+            npm run test:unit
+      - run:
+          name: Deploy
+          command: 
+            echo "Running tests..."
+            # Insert your own deployment procedure
+      - run:
+          name: Trigger Checkly
+          command: |
+            sh 'echo "Deployment finished."'
+            # Call Checkly trigger
+            sh 'curl "https://api-test.checklyhq.com/check-groups/4/trigger/${CHECKLY_TOKEN}" > ${PWD}/checkly.json'
+            # Exit with an error status if we find more than 0 "hasFailures: true" in the output
+            sh 'if [ $(grep -c \'"hasFailures":true\' $PWD/checkly.json) -ne 0 ]; then exit 1; fi'
