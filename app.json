@@ -1,0 +1,13 @@
+{
+    "name": "Checkly CI Test",
+    "description": "This is the sample repository for Checkly's CI integrations.",
+    "repository": "https://github.com/checkly/checkly-ci-test",
+    "buildpacks": [
+    {
+        "url": "heroku/nodejs"
+    }
+    ],
+    "scripts": {
+      "postdeploy": "echo 'Deployment finished.' && curl 'https://api-test.checklyhq.com/check-groups/4/trigger/$CHECKLY_TOKEN' > $PWD/checkly.json' && if [ $(grep -c '\"hasFailures\":true' $PWD/checkly.json) -ne 0 ]; then exit 1; fi"
+    }
+}
