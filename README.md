@@ -1,5 +1,9 @@
 # checkly-ci-test
 
+## Heroku
+
+---
+
 ## Jenkins
 
 If you have an existing Jenkins pipeline, you can add an additional stage after you have deployed your application. It could look as follows:
