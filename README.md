@@ -1,5 +1,19 @@
 # checkly-ci-test
 
+## Heroku CI
+
+If you are using Heroku CI, you can add a post-deploy step in your `app.json` file:
+```json
+{
+    "scripts": {
+      "postdeploy": "echo 'Deployment finished.' && curl 'https://api-test.checklyhq.com/check-groups/4/trigger/$CHECKLY_TOKEN' > $PWD/checkly.json' && if [ $(grep -c '\"hasFailures\":true' $PWD/checkly.json) -ne 0 ]; then exit 1; fi"
+    }
+}
+```
+
+You will also need to set [config variables](https://devcenter.heroku.com/articles/config-vars) for your Heroku app to set your `CHECKLY_TOKEN`.
+
+
 ## Jenkins
 
 If you have an existing Jenkins pipeline, you can add an additional stage after you have deployed your application. It could look as follows:
